@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+
+	
+	<context:component-scan base-package="com.zd" />
+
+	<!-- 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/resources/**"/>
+			<bean class="com.fusionskye.ezsonar.utils.interceptor.BpmcInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	 -->
+	 
+	<!-- 
+	<bean reportSettingId="defaultAnnotationHandlerMapping"
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" >
+		<property name="interceptors">  
+           <list>  
+               <bean class="com.fusionskye.ezsonar.utils.interceptor.BpmcInterceptor"/>  
+           </list>  
+      	</property>
+	</bean>
+	 -->
+	<mvc:annotation-driven>
+    	<mvc:message-converters register-defaults="false">
+    		<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=utf-8</value>
+						<value>text/xml;charset=utf-8</value>
+						<value>text/plain;</value>
+						<value>text/json;charset=utf-8</value>
+					</list>
+				</property>
+			</bean>
+        	<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+    	</mvc:message-converters>
+    	<!-- <mvc:argument-resolvers>
+    		<bean class="com.fusionskye.ezsonar.mvc.resolver.UserArgumentResolver"/>
+    	</mvc:argument-resolvers> -->
+	</mvc:annotation-driven>
+	
+	<!-- <mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<mvc:exclude-mapping path="/resources/**"/>
+			<bean class="com.fusionskye.ezsonar.utils.interceptor.ApplicationInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors> -->
+	
+	<!-- aop 注解实现 -->
+	<aop:aspectj-autoproxy/>
+	
+	<!-- 
+	<aop:config proxy-target-class="true">
+        <aop:advisor pointcut="execution(* com.fusionskye.ezsonar.repository.*.*(..))" advice-ref="collectionStatsInterceptor"/>
+    </aop:config>
+    -->
+<!-- 
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+			</list>
+		</property>
+	</bean>
+	 -->
+	<!-- 
+	<bean reportSettingId="annotationMethodHandlerAdapter"
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+			    <ref bean="mappingJacksonHttpMessageConverter" />
+				<ref bean="stringHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+	<bean reportSettingId="stringHttpMessageConverter"
+		class="org.springframework.http.converter.StringHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/html;charset=utf-8</value>
+				<value>text/xml;charset=utf-8</value>
+				<value>text/plain;</value>
+				<value>text/json;charset=utf-8</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean reportSettingId="mappingJacksonHttpMessageConverter"
+          class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/html;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+	-->
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources/ directory -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<mvc:resources mapping="/static/**" location="/static/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+	    <property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>
+	</bean>
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+	    <property name="definitions">
+	        <list>
+	            <!--<value>/WEB-INF/config/tiles-definitions.xml</value>-->
+				<value>/WEB-INF/config/tiles-definitions-apm.xml</value>
+				<value>/WEB-INF/config/tiles-definitions-npm.xml</value>
+				<value>/WEB-INF/config/tiles-definitions-tv.xml</value>
+				<value>/WEB-INF/config/tiles-definitions-ebank.xml</value>
+				<value>/WEB-INF/config/tiles-definitions-rpo.xml</value>
+				<value>/WEB-INF/config/tiles-definitions-self.xml</value>
+	        </list>
+	    </property>
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+	</bean>
+	
+	<!-- upload file -->  
+	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        10M
+	    <property name="maxUploadSize" value="10485760"/>
+	    <property name="maxInMemorySize" value="2048"/>
+	    <property name="defaultEncoding" value="UTF-8"/>
+	</bean>   -->
+	
+	<!-- <context:property-placeholder 
+		location="classpath:mongo.properties,classpath:indexer.properties,classpath:default_setting.properties,classpath:build.properties,classpath:map.properties,classpath:memcached.properties" 
+		file-encoding="UTF-8" ignore-resource-not-found="true" ignore-unresolvable="true" />  -->
+		
+	<!-- <bean reportSettingId="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
+	<!-- <bean id="propertyConfigurer" class="com.fusionskye.ezsonar.utils.extend.ExtendPropertyPlaceholderConfigurer">
+	    <property name="locations">
+	       <list>
+	          <value>classpath:mongo.properties</value>
+	          <value>classpath:default_setting.properties</value>
+	          <value>classpath:quartz.properties</value>
+	          <value>classpath:memcached.properties</value>
+	          <value>classpath:indexer.properties</value>
+	          <value>classpath:map.properties</value>
+	          <value>classpath:build.properties</value>
+	        </list>
+	    </property>
+	</bean>	 -->
+	
+	<!-- <bean id="exceptionResolver" class="com.fusionskye.ezsonar.exception.ExceptionHandler"/> -->
+	
+	<!-- memcached -->
+	<!-- <import resource="applicationContext-memcached.xml"/> -->
+	<!-- dao -->
+	<!-- <import resource="applicationContext-dao.xml"/> -->
+	<!-- quartz -->
+	<!-- <import resource="applicationContext-quartz.xml"/> -->
+</beans>

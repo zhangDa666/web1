@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="layouts.rpo.application_layout" template="/WEB-INF/views/layouts/application_layout.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/layouts/header_apm.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/views/layouts/system_menu_rpo.jsp"/>
+        <put-attribute name="breadcrumb" value=""/>
+        <put-attribute name="main-container" value=""/>
+        <put-attribute name="dialog" value=""/>
+    </definition>
+
+    <!-- 一键恢复列表 -->
+    <definition name="layouts.rpo.recovery.index" extends="layouts.rpo.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/rpoRecovery/breadcrumb.jsp" />
+        <put-attribute name="main-container" value="/WEB-INF/views/rpoRecovery/index.jsp" />
+    </definition>
+
+    <!-- RPO监控系统配置概览 -->
+    <definition name="layouts.rpo.settingOverview.index" extends="layouts.rpo.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/rposetting/breadcrumb.jsp" />
+        <put-attribute name="main-container" value="/WEB-INF/views/rposetting/index.jsp" />
+    </definition>
+    <!-- RPO流列表 -->
+    <definition name="layouts.rpo.streams.index" extends="layouts.rpo.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/streams/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/streams/index.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/streams/_dialog.jsp"/>
+    </definition>
+    <!-- RPO流列表详细流 -->
+    <definition name="layouts.rpo.streams.settings2" extends="layouts.rpo.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/streams/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/streams/setting2.jsp"/>
+    </definition>
+    <!-- RPO作业条 -->
+    <definition name="layouts.rpo.code.index" extends="layouts.rpo.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/rpocode/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/rpocode/index.jsp"/>
+    </definition>
+
+</tiles-definitions>

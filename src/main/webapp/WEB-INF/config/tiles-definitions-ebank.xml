@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="layouts.ebank.application_layout" template="/WEB-INF/views/layouts/application_layout.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/layouts/header_apm.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/views/layouts/system_menu_ebank.jsp"/>
+        <put-attribute name="breadcrumb" value="" />
+        <put-attribute name="main-container" value="" />
+        <put-attribute name="dialog" value="" />
+    </definition>
+
+    <!-- 用户体验 -->
+    <definition name="layouts.ebank.userExperience.index" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/userExperience/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/userExperience/index.jsp"/>
+    </definition>
+
+    <!-- 热力图 -->
+    <definition name="layouts.ebank.heatmap.setting" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/heatmap/ebank/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/heatmap/ebank/setting.jsp"/>
+    </definition>
+
+    <!--报表基础数据查询 -->
+    <definition name="layouts.ebank.reportbasicdata.index" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/reportbasicdata/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/reportbasicdata/index.jsp"/>
+    </definition>
+    <!--报表查询 -->
+    <definition name="layouts.ebank.searchreport.index" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/searchreport/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/searchreport/index.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/searchreport/dialog.jsp"/>
+    </definition>
+    <!--报表设置-单个设置编辑页面 -->
+    <definition name="layouts.ebank.reportsetting.edit" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/reportsetting/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/reportsetting/edit.jsp"/>
+    </definition>
+    <!--报表模板列表 -->
+    <definition name="layouts.ebank.reporttemplate.index" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/reporttemplate/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/reporttemplate/index.jsp"/>
+        <!--<put-attribute name="dialog" value="/WEB-INF/views/reporttemplate/_dialog.jsp" />-->
+    </definition>
+
+    <!-- 业务监控 -->
+    <definition name="layouts.ebank.businessmonitor.index" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/businessmonitor/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/businessmonitor/index.jsp"/>
+    </definition>
+    
+    <!-- 渠道路径详情-->
+    <definition name="layouts.ebank.channelRoute.show" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channelRoute/breadcrumb_ebank.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channelRoute/show/show_new.jsp"/>
+    </definition>
+
+    <!-- 渠道路径节点详情-->
+    <definition name="layouts.ebank.channelRoute.detailnode" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channelRoute/breadcrumb_ebank.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channelRoute/show/detail_node.jsp"/>
+    </definition>
+
+    <!-- 渠道监控 -->
+    <definition name="layouts.ebank.channelmonitor.index" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channelmonitor/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channelmonitor/index.jsp"/>
+    </definition>
+    
+    <!-- 渠道详情-->
+    <definition name="layouts.ebank.channel.show" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channels/show/breadcrumb_ebank.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channels/show/show_new.jsp"/>
+    </definition>
+
+    <!-- 渠道节点详情-->
+    <definition name="layouts.ebank.channel.detailnode" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channels/show/breadcrumb_ebank.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channels/show/detail_node.jsp"/>
+    </definition>
+
+    <!-- 用户统计概览页 -->
+    <definition name="layouts.ebank.userStatistic.index" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/userStatistic/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/userStatistic/index.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/userStatistic/dialog.jsp"/>
+    </definition>
+
+    <!-- 用户统计详情页 -->
+    <definition name="layouts.ebank.userStatistic.detail" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/userStatistic/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/userStatistic/detail.jsp"/>
+    </definition>
+    
+    <!-- 渠道监控 -->
+    <definition name="layouts.ebank.channelToposMonitor.index" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channelToposMonitor/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channelToposMonitor/index.jsp"/>
+    </definition>
+    
+    <!-- 渠道监控详情（子业务视图） -->
+    <definition name="layouts.ebank.channelToposBusinessData.show" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channelTopos/show/breadcrumb_ebank.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channelTopos/show/show_business.jsp"/>
+    </definition>
+    
+    <!-- 渠道监控详情（TOPO视图） -->
+    <definition name="layouts.ebank.channelToposTopoData.show" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channelTopos/show/breadcrumb_ebank.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channelTopos/show/show_topo.jsp"/>
+    </definition>
+    
+    <!-- 渠道监控详情（EBANK视图） -->
+    <definition name="layouts.ebank.channelToposEBankData.show" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channelTopos/show/breadcrumb_ebank.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channelTopos/show/show_ebank.jsp"/>
+    </definition>
+
+
+    <!-- 新需求业务管理监控 -->
+    <definition name="layouts.ebank.businessTopoMonitor.index" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/businessManage/monitorBreadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/businessManage/monitor/monitor_index.jsp"/>
+    </definition>
+
+    <!-- 新需求业务管理监控 下级展示-->
+    <definition name="layouts.ebank.business.businessGroupShow" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/businessManage/monitorBreadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/businessManage/monitor/monitor_group.jsp"/>
+    </definition>
+
+    <!-- 新需求业务管理监控 子业务展示-->
+    <definition name="layouts.ebank.business.businessInfoShow" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/businessManage/monitorBreadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/businessManage/monitor/monitor_show.jsp"/>
+    </definition>
+
+    <!-- 新需求业务管理监控 子业务Topo展示-->
+    <definition name="layouts.ebank.business.showTopo" extends="layouts.ebank.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/businessManage/monitorBreadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/businessManage/monitor/_show_topo.jsp"/>
+    </definition>
+
+</tiles-definitions>

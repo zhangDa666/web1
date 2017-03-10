@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="layouts.tv.application_layout"  
+        template="/WEB-INF/views/layouts/application_tv_layout.jsp">
+		<put-attribute name="main-container" value="" />
+    </definition>
+    
+    <!--  业务墙TV模式 -->
+    <definition name="layouts.tv.topos.applicationwall" extends="layouts.tv.application_layout">
+		<put-attribute name="main-container" value="/WEB-INF/views/topos/show/application_wall.jsp" />
+    </definition>
+    <!--  交易监控TV模式 -->
+    <definition name="layouts.tv.transmonitor.index" extends="layouts.tv.application_layout">
+		<put-attribute name="main-container" value="/WEB-INF/views/transmonitor/index.jsp" />
+    </definition>
+    <!--  热力图TV模式 -->
+    <definition name="layouts.tv.heatmap" extends="layouts.tv.application_layout">
+		<put-attribute name="main-container" value="/WEB-INF/views/heatmap/show_heat_map.jsp" />
+    </definition>
+    <!-- 电子银行热力图TV模式 -->
+    <definition name="layouts.tv.ebankHeatmap" extends="layouts.tv.application_layout">
+		<put-attribute name="main-container" value="/WEB-INF/views/heatmap/ebank/show_heat_map_ebank.jsp" />
+    </definition>
+    <!--  应用性能TV模式 -->
+    <definition name="layouts.tv.topos.overview" extends="layouts.tv.application_layout">
+		<put-attribute name="main-container" value="/WEB-INF/views/topos/show/overview.jsp" />
+    </definition>
+    <!--  仪表盘TV模式 -->
+    <definition name="layouts.tv.dashboard.show" extends="layouts.tv.application_layout">
+        <put-attribute name="main-container" value="/WEB-INF/views/dashboards/show.jsp" />
+    </definition>
+
+</tiles-definitions>

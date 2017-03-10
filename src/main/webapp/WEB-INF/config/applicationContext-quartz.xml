@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+       default-lazy-init="false">
+
+    <bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="false">
+        <property name="applicationContextSchedulerContextKey" value="applicationContextKey"/>
+        <property name="triggers">
+            <list>
+                <ref local="healthTrigger"/>
+                <ref local="esIndicesCacheTrigger"/>
+                <ref local="reportExportTrigger"/>
+            </list>
+        </property>
+        <property name="configLocation" value="classpath:quartz.properties"/>
+    </bean>
+
+    <bean id="healthJob" class="com.fusionskye.ezsonar.scheduler.HealthJob" init-method="saveHealthJobDetail"/>
+
+    <!-- Detial -->
+    <bean id="healthDetial" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="healthJob"/>
+        <property name="targetMethod" value="saveHealthJobDetail"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+
+    <!-- Trigger -->
+    <bean id="healthTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="cronExpression" value="0 0/5 * * * ?"/>
+        <property name="jobDetail" ref="healthDetial"/>
+    </bean>
+
+
+    <!--定时更新 es 所有 MainIndex与当天的MainIndex 记录 start-->
+
+    <bean id="esIndicesCacheJob" class="com.fusionskye.ezsonar.scheduler.EsIndicesCacheJob"
+          init-method="initIndicesCache"/>
+
+    <!--  es 所有 MainIndex 更新 Detial -->
+    <bean id="esIndicesCacheDetial" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="esIndicesCacheJob"/>
+        <property name="targetMethod" value="regularlyUpdateAllIndies"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+    <!-- es 所有 MainIndex 更新 Trigger -->
+    <bean id="esIndicesCacheTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="cronExpression" value="40 0/1 * * * ?"/>
+        <property name="jobDetail" ref="esIndicesCacheDetial"/>
+    </bean>
+
+    <!--定时更新 es 所有 MainIndex与当天的MainIndex 记录 end-->
+
+
+    <bean id="reportExportJob" class="com.fusionskye.ezsonar.scheduler.ReportExportJob" init-method="initReportExportJob"/>
+
+    <!-- Detial -->
+    <bean id="reportExportDetial" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="reportExportJob"/>
+        <property name="targetMethod" value="work"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+
+    <!-- Trigger -->
+    <bean id="reportExportTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="cronExpression" value="50 1 0/1 * * ?"/>
+        <property name="jobDetail" ref="reportExportDetial"/>
+    </bean>
+
+</beans>

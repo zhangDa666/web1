@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+    xmlns:elasticsearch="http://www.pilato.fr/schema/elasticsearch"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+        http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
+        http://www.pilato.fr/schema/elasticsearch http://www.pilato.fr/schema/elasticsearch/elasticsearch-0.3.xsd">
+		
+    <mongo:repositories base-package="com.fusionskye.ezsonar.repository" />
+
+    <mongo:mongo host="${mongodb.host.test}" port="${mongodb.port.test}">
+       <mongo:options
+            connections-per-host="${mongo.connectionsPerHost}"
+            threads-allowed-to-block-for-connection-multiplier="${mongo.threadsAllowedToBlockForConnectionMultiplier}"/>        
+    </mongo:mongo>
+	
+	<mongo:db-factory dbname="${mongodb.name.test}" username="${mongodb.username.test}" password="${mongodb.password.test}" mongo-ref="mongo" />
+
+	<!-- 去掉mongodb自动生成的_class字段  -->
+	<bean id="mappingContext" class="org.springframework.data.mongodb.core.mapping.MongoMappingContext" />
+	<bean id="defaultMongoTypeMapper" class="org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper">
+		<constructor-arg name="typeKey"><null/></constructor-arg>
+	 </bean>
+	 
+	 <bean id="mappingMongoConverter" class="org.springframework.data.mongodb.core.convert.MappingMongoConverter">
+		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
+		<constructor-arg name="mappingContext" ref="mappingContext" />
+		<property name="typeMapper" ref="defaultMongoTypeMapper" />
+	 </bean>
+
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
+		<constructor-arg name="mongoConverter" ref="mappingMongoConverter" />
+	</bean>
+	
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+	<bean id="esClient" class="com.fusionskye.ezsonar.utils.extend.ExtendElasticsearchTransportClientFactoryBean" >
+		<!--<property name="settingsFile" value="indexer.properties" />-->
+    	<!--<property name="esNodes">-->
+			<!--<list>-->
+				<!--<value>${indexer.host}</value>-->
+			<!--</list>-->
+		<!--</property>-->
+	</bean>
+	
+	<bean name="searchConfig" class="com.fusionskye.ezsonar.common.elastic.factory.SearchConfig">
+		<property name="client" ref="esClient"></property>
+	</bean>
+	<bean name="searchFactory" class="com.fusionskye.ezsonar.common.elastic.factory.SearchFactory" init-method="init">
+		<property name="searchConfig" ref="searchConfig"></property>
+	</bean>
+</beans>

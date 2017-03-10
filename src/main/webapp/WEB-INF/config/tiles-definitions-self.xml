@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="layouts.self.application_layout" template="/WEB-INF/views/layouts/application_layout.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/layouts/header_apm.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/views/layouts/system_menu_self.jsp"/>
+        <put-attribute name="breadcrumb" value=""/>
+        <put-attribute name="main-container" value=""/>
+        <put-attribute name="dialog" value=""/>
+    </definition>
+
+
+    <!-- self监控系统配置概览 -->
+    <definition name="layouts.self.selfMonitor.index" extends="layouts.self.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/self/monitor/breadcrumb.jsp" />
+        <put-attribute name="main-container" value="/WEB-INF/views/self/monitor/index.jsp" />
+    </definition>
+    <!-- self监控系统配置概览 -->
+    <definition name="layouts.self.settingOverview.index" extends="layouts.self.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/self/selfSetting/breadcrumb.jsp" />
+        <put-attribute name="main-container" value="/WEB-INF/views/self/selfSetting/index.jsp" />
+    </definition>
+    <!-- self流列表 -->
+    <definition name="layouts.self.streams.index" extends="layouts.self.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/streams/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/streams/index.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/streams/_dialog.jsp"/>
+    </definition>
+    <!-- self流列表详细流 -->
+    <definition name="layouts.self.streams.settings2" extends="layouts.self.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/streams/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/streams/setting2.jsp"/>
+    </definition>
+    <!-- self 模块管理 -->
+    <definition name="layouts.self.selfModuleManage.index" extends="layouts.self.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/self/moduleManage/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/self/moduleManage/index.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/self/moduleManage/dialog.jsp"/>
+    </definition>
+
+</tiles-definitions>

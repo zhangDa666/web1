@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="layouts.apm.application_layout" template="/WEB-INF/views/layouts/application_layout.jsp">
+        <put-attribute name="header" value="/WEB-INF/views/layouts/header_apm.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/views/layouts/system_menu_apm.jsp"/>
+        <put-attribute name="breadcrumb" value=""/>
+        <put-attribute name="main-container" value=""/>
+        <put-attribute name="dialog" value=""/>
+    </definition>
+
+    <!-- 业务墙-->
+    <definition name="layouts.topos.applicationwall" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/topos/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/topos/show/application_wall.jsp"/>
+    </definition>
+    <!-- 用户体验 -->
+    <definition name="layouts.userExperience.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/userExperience/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/userExperience/index.jsp"/>
+    </definition>
+    <!-- 用户体验详情 -->
+    <definition name="layouts.userExperience.detail" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/userExperience/detail_breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/userExperience/detail.jsp"/>
+    </definition>
+    <!-- 用户体验城市详情 -->
+    <definition name="layouts.userExperience.detail.city" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/userExperience/detail_city_breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/userExperience/detail_city.jsp"/>
+    </definition>
+    <!-- 应用性能-->
+    <definition name="layouts.topos.overview" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/topos/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/topos/show/overview.jsp"/>
+    </definition>
+    <!-- 应用性能详情-->
+    <definition name="layouts.topos.show" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/topos/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/topos/show/show.jsp"/>
+    </definition>
+    <!-- 节点详情-->
+    <definition name="layouts.topos.detailnode" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/topos/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/topos/show/detail_node.jsp"/>
+    </definition>
+    <!-- 交易仪表盘详请-->
+    <definition name="layouts.dashboards.show" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/dashboards/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/dashboards/show.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/dashboards/_show_dialog.jsp"/>
+    </definition>
+    <!-- 多维分析列表 -->
+    <definition name="layouts.apm.dimension.dimensionAnalysis" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/dimension/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/dimension/index.jsp"/>
+    </definition>
+    <!-- 多维分析 -->
+    <definition name="layouts.apm.dimension.messageanalysis" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/dimension/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/dimension/messageanalysis.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/dimension/_dialog.jsp"/>
+    </definition>
+    <!--交易追踪首页 -->
+    <definition name="layouts.apm.messagetrack.track" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/messagetrack/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/messagetrack/track.jsp"/>
+    </definition>
+    <!--交易追踪业务路径展示页-->
+    <definition name="layouts.apm.messagetrack.messageTrackByTopos" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/messagetrack/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/messagetrack/messagetrack.jsp"/>
+    </definition>
+    <!-- ========可视化分析下拉end============= -->
+    <!-- 主机性能 -->
+    <definition name="layouts.hostPerformance.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/hostPerformance/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/hostPerformance/index.jsp"/>
+    </definition>
+    <!-- 主机性能详情 -->
+    <definition name="layouts.hostPerformance.detail" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/hostPerformance/detail_breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/hostPerformance/detail.jsp"/>
+    </definition>
+    <!-- 事件告警 -->
+    <definition name="layouts.apm.alarms.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/alarms/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/alarms/index.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/alarms/_alarmdata.jsp"/>
+    </definition>
+
+    <!-- 业务监控系统配置概览 -->
+    <definition name="layouts.apm.settingOverview.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/apmsetting/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/apmsetting/index.jsp"/>
+    </definition>
+    <!-- 应用流列表 -->
+    <definition name="layouts.apm.streams.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/streams/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/streams/index.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/streams/_dialog.jsp"/>
+    </definition>
+    <!-- 应用流流列表详细流 -->
+    <definition name="layouts.apm.streams.settings2" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/streams/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/streams/setting2.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/streams/_dialog.jsp"/>
+    </definition>
+    <!-- 业务路径编辑概览页面 -->
+    <definition name="layouts.topos.setting_overview" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/topos/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/topos/setting/_setting_overview.jsp"/>
+    </definition>
+    <!-- 业务路径列表-->
+    <definition name="layouts.topos.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/topos/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/topos/setting/index/index.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/topos/setting/_dialogs.jsp"/>
+    </definition>
+    <!-- 业务路径设置、排期视图-->
+    <definition name="layouts.topos.setting" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/topos/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/topos/setting/setting.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/topos/setting/_dialogs.jsp"/>
+    </definition>
+    <!-- 系统配置 - 主机信息 -->
+    <definition name="layouts.hostInfo.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/hostInfos/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/hostInfos/index.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/hostInfos/_dialog.jsp"/>
+    </definition>
+    <!-- 系统配置 - 地理位置 -->
+    <definition name="layouts.hostLocation.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/hostLocations/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/hostLocations/index.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/hostLocations/dialog.jsp"/>
+    </definition>
+    <!--报表基础数据查询 -->
+    <definition name="layouts.apm.reportbasicdata.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/reportbasicdata/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/reportbasicdata/index.jsp"/>
+    </definition>
+    <!--报表查询 -->
+    <definition name="layouts.apm.searchreport.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/searchreport/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/searchreport/index.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/searchreport/dialog.jsp"/>
+    </definition>
+    <!--报表设置-单个设置编辑页面 -->
+    <definition name="layouts.apm.reportsetting.edit" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/reportsetting/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/reportsetting/edit.jsp"/>
+    </definition>
+    <!--报表模板列表 -->
+    <definition name="layouts.apm.reporttemplate.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/reporttemplate/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/reporttemplate/index.jsp"/>
+        <!--<put-attribute name="dialog" value="/WEB-INF/views/reporttemplate/_dialog.jsp" />-->
+    </definition>
+    <!--告警通知列表 -->
+    <definition name="layouts.apm.alarmsend.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/alarmsend/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/alarmsend/index.jsp"/>
+    </definition>
+    <!--告警通知详细 -->
+    <definition name="layouts.apm.alarmsend.edit" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/alarmsend/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/alarmsend/edit.jsp"/>
+    </definition>
+    <!-- 交易仪表盘列表 -->
+    <definition name="layouts.dashboards.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/dashboards/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/dashboards/index.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/dashboards/_dialog.jsp"/>
+    </definition>
+    <!-- 交易仪表盘编辑-->
+    <definition name="layouts.dashboards.edit" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/dashboards/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/dashboards/show.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/dashboards/_show_dialog.jsp"/>
+    </definition>
+    <!-- 仪表盘模板列表 -->
+    <definition name="layouts.dashboardtemplate.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/dashboardtemplate/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/dashboardtemplate/index.jsp"/>
+    </definition>
+    <!-- 仪表盘模板详细 -->
+    <definition name="layouts.dashboardtemplate.show" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/dashboardtemplate/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/dashboardtemplate/show_temp.jsp"/>
+    </definition>
+    <!-- 过滤器管理 -->
+    <definition name="layouts.filters.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/filters/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/filters/index.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/filters/_dialog.jsp"/>
+    </definition>
+    <!--系统设置 -->
+    <definition name="layouts.apm.systemsettings.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/settings/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/settings/systemsettings.jsp"/>
+    </definition>
+    <!-- 敏感信息 -->
+    <definition name="layouts.sensitiveinfo.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/sensitiveinfo/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/sensitiveinfo/index.jsp"/>
+    </definition>
+    <!-- ========系统配置下拉end============= -->
+
+    <!-- ========head菜单start============= -->
+    <!-- 账户设置 -->
+    <definition name="layouts.apm.users.detail" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/users/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/users/detail.jsp"/>
+    </definition>
+    <!-- 用户管理-->
+    <definition name="layouts.apm.users.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/users/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/users/index.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/users/_dialog.jsp"/>
+    </definition>
+    <!-- 角色列表 -->
+    <definition name="layouts.apm.roles.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/roles/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/roles/index.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/roles/_dialog.jsp"/>
+    </definition>
+    <!-- 域认证列表 -->
+    <definition name="layouts.apm.ldap.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/ldap/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/ldap/index.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/ldap/_dialog.jsp"/>
+    </definition>
+    <!-- 资源管理-->
+    <definition name="layouts.apm.authorization.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/authorization/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/authorization/index.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/authorization/_dialog.jsp"/>
+    </definition>
+    <!--系统运行状况 -->
+    <definition name="layouts.apm.health.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/health/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/health/index.jsp"/>
+    </definition>
+    <!-- ========head菜单end============= -->
+    <!-- 中信双11 交易监控 -->
+    <definition name="layouts.transmonitor.index" extends="layouts.apm.application_layout">
+        <put-attribute name="transmonitor" value="active"/>
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/transmonitor/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/transmonitor/index.jsp"/>
+    </definition>
+
+    <!-- 别名上传 -->
+    <definition name="layouts.apm.rename.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/rename/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/rename/index.jsp"/>
+    </definition>
+    <definition name="layouts.apm.rename.detail" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/rename/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/rename/detail.jsp"/>
+    </definition>
+
+    <!-- 系统配置 -业务管理 -->
+    <definition name="layouts.apm.businessManagement.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/businessManagement/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/businessManagement/index.jsp"/>
+    </definition>
+
+
+    <!--渠道信息-->
+    <definition name="layouts.apm.channels.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channels/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channels/index.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/channels/_dialog.jsp"/>
+    </definition>
+
+    <!--渠道路径-->
+    <definition name="layouts.channelRoute.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channelRoute/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channelRoute/index/index.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/channelRoute/setting/_dialogs.jsp"/>
+    </definition>
+
+    <!-- 渠道路径编辑概览页面 -->
+    <definition name="layouts.channelRoute.setting_overview" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channelRoute/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channelRoute/setting/_setting_overview.jsp"/>
+    </definition>
+
+    <!--渠道路径编辑-->
+    <definition name="layouts.channelRoute.setting" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channelRoute/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channelRoute/setting/setting.jsp"/>
+    </definition>
+
+    <!-- 渠道路径详情-->
+    <definition name="layouts.apm.channelRoute.show" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channelRoute/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channelRoute/show/show_new.jsp"/>
+    </definition>
+
+    <!-- 渠道路径节点详情-->
+    <definition name="layouts.apm.channelRoute.detailnode" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channelRoute/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channelRoute/show/detail_node.jsp"/>
+    </definition>
+
+    <!-- 渠道详情-->
+    <definition name="layouts.apm.channel.show" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channels/show/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channels/show/show_new.jsp"/>
+    </definition>
+
+    <!-- 渠道节点详情-->
+    <definition name="layouts.apm.channel.detailnode" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channels/show/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channels/show/detail_node.jsp"/>
+    </definition>
+
+    <!-- 渠道监控 -->
+    <definition name="layouts.apm.channelmonitor.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channelmonitor/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channelmonitor/index.jsp"/>
+    </definition>
+
+    <!-- 业务监控 -->
+    <definition name="layouts.apm.businessmonitor.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/businessmonitor/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/businessmonitor/index.jsp"/>
+    </definition>
+    
+    
+    <!-- 渠道列表-->
+    <definition name="layouts.channelTopos.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channelTopos/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channelTopos/index/index.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/channelTopos/index/_dialogs.jsp"/>
+    </definition>
+    
+    <!-- 渠道详情概览 -->
+    <definition name="layouts.channelTopos.settingOverview" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channelTopos/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channelTopos/setting/_setting_overview.jsp"/>
+    </definition>
+    
+    <!--渠道路径图编辑-->
+    <definition name="layouts.channelTopos.setting" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channelTopos/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channelTopos/setting/setting.jsp"/>
+    </definition>
+    
+    <!-- 渠道监控 -->
+    <definition name="layouts.apm.channelToposMonitor.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channelToposMonitor/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channelToposMonitor/index.jsp"/>
+    </definition>
+    
+    <!-- 渠道监控详情（子业务视图） -->
+    <definition name="layouts.apm.channelToposBusinessData.show" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channelTopos/show/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channelTopos/show/show_business.jsp"/>
+    </definition>
+    
+    <!-- 渠道监控详情（TOPO视图） -->
+    <definition name="layouts.apm.channelToposTopoData.show" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channelTopos/show/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channelTopos/show/show_topo.jsp"/>
+    </definition>
+    
+    <!-- 渠道路径节点详情-->
+    <definition name="layouts.apm.channelTopos.detailnode" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/channelTopos/show/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/channelTopos/show/detail_node.jsp"/>
+    </definition>
+    
+	<!-- .............自定义............. -->
+	<!-- zd告警信息 -->
+    <definition name="layouts.apm.zdAlarm.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/zdAlarm/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/zdAlarm/index.jsp"/>
+        <put-attribute name="dialog" value="/WEB-INF/views/zdAlarm/alarmMsg.jsp"/>
+    </definition>
+    
+    <!-- 报表测试 -->
+    <definition name="layouts.apm.reportTest.test" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/reportTest/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/reportTest/test.jsp"/>
+    </definition>
+	<!-- ...............自定义................ -->
+	
+    <!-- 新需求业务管理监控 -->
+    <definition name="layouts.apm.businessTopoMonitor.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/businessManage/monitorBreadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/businessManage/monitor/monitor_index.jsp"/>
+    </definition>
+
+    <!-- 新需求业务管理监控 下级展示-->
+    <definition name="layouts.apm.business.businessGroupShow" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/businessManage/monitorBreadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/businessManage/monitor/monitor_group.jsp"/>
+    </definition>
+
+    <!-- 新需求业务管理监控 子业务展示-->
+    <definition name="layouts.apm.business.businessInfoShow" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/businessManage/monitorBreadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/businessManage/monitor/monitor_show.jsp"/>
+    </definition>
+
+    <!-- 新需求业务管理监控 子业务Topo展示-->
+    <definition name="layouts.apm.business.showTopo" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/businessManage/monitorBreadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/businessManage/monitor/_show_topo.jsp"/>
+    </definition>
+    
+    <!-- 新需求业务管理监控 节点展示-->
+    <definition name="layouts.apm.business.detailnode" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/businessManage/monitorBreadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/businessManage/monitor/detail_node.jsp"/>
+    </definition>
+    
+
+    <!-- 业务管理 -->
+    <definition name="layouts.businessManage.index" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/businessManage/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/businessManage/index/index.jsp"/>
+    </definition>
+
+    <!-- 业务概览 -->
+    <definition name="layouts.businessManage.settingOverview" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/businessManage/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/businessManage/setting/_settingOverview.jsp"/>
+    </definition>
+
+    <!--业务管理节点编辑-->
+    <definition name="layouts.businessManage.setting" extends="layouts.apm.application_layout">
+        <put-attribute name="breadcrumb" value="/WEB-INF/views/businessManage/breadcrumb.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/views/businessManage/setting/setting.jsp"/>
+    </definition>
+
+</tiles-definitions>

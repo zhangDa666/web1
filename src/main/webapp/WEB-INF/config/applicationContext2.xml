@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+ 	xmlns:aop="http://www.springframework.org/schema/aop"   
+ 	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd   
+  	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+  	http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
+  	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+  	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+  	
+  	<!-- 引入mySql属性文件 -->
+	<!-- <context:property-placeholder location="classpath*:mysql.properties" /> -->
+  	
+  	<!-- <bean id="propertyConfigure" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:mysql.properties</value>
+            </list>
+        </property>
+    </bean> -->
+  	
+  	
+  	
+  	<mongo:repositories base-package="com.zha.repository" />
+  	
+    <mongo:mongo host="127.0.0.1" port="27017">
+       <!-- <mongo:options connections-per-host="20"
+            threads-allowed-to-block-for-connection-multiplier="10"/>  -->       
+    </mongo:mongo>
+	
+	<mongo:db-factory dbname="testDB" mongo-ref="mongo" />
+	
+	<!-- 以下配置的目的是将数据库的document转换成项目中的model -->
+	<bean id="mappingContext" class="org.springframework.data.mongodb.core.mapping.MongoMappingContext" />
+	<bean id="defaultMongoTypeMapper" class="org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper">
+		<!-- 去掉mongodb自动生成的_class字段  -->
+		<constructor-arg name="typeKey"><null/></constructor-arg>
+	 </bean>
+	 <bean id="mappingMongoConverter" class="org.springframework.data.mongodb.core.convert.MappingMongoConverter">
+		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
+		<constructor-arg name="mappingContext" ref="mappingContext" />
+		<property name="typeMapper" ref="defaultMongoTypeMapper" />
+	 </bean>
+	
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
+		<constructor-arg name="mongoConverter" ref="mappingMongoConverter" />
+	</bean>
+	
+    <!-- <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />-->
+  	
+  	<!-- MySQL数据库连接配置 -->
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		
+		<property name="driverClassName" value="${jdbc.driverClassName}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${mySQL.userName}"/>
+		<property name="password" value="${mySQL.password}"/>
+		
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/zd_web?characterEncoding=UTF-8"/>
+		<property name="username" value="root"/>
+		<property name="password" value="root"/>
+		
+		<property name="maxActive" value="100"></property>
+        <property name="maxIdle" value="30"></property>
+        <property name="maxWait" value="500"></property>
+        <property name="defaultAutoCommit" value="true"></property>
+		
+	</bean> -->
+	
+	<context:annotation-config/>
+	
+	<!-- 事务管理配置 -->
+	<!-- <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    	<property name="dataSource" ref="dataSource" />
+    </bean>
+    <tx:annotation-driven transaction-manager="txManager" />
+    
+    mybatis框架配置
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> 
+     	<property name="dataSource" ref="dataSource"/>
+     	<property name="configLocation" value="classpath:mybatis-config2.xml" />
+     	
+     	<property name="transactionFactory">  
+        	<bean class="org.apache.ibatis.transaction.managed.ManagedTransactionFactory" />  
+   		</property>
+     	
+  	</bean> -->
+  	
+  	<!-- spring文件上传配置 -->
+  	<!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	    <property name="maxUploadSize" value="10485760"/>
+	    <property name="maxInMemorySize" value="2048"/>
+	    <property name="defaultEncoding" value="UTF-8"/>
+	</bean>  --> 
+	
+	<!-- <bean id="categoryRepository" class="org.mybatis.spring.mapper.MapperFactoryBean">
+     	<property name="sqlSessionFactory" ref="sqlSessionFactory" /> 
+     	<property name="mapperInterface" value="com.zha.repository.IcategoryRepository"/>
+  	</bean>
+	<bean id="userRepository" class="org.mybatis.spring.mapper.MapperFactoryBean">
+     	<property name="sqlSessionFactory" ref="sqlSessionFactory" /> 
+     	<property name="mapperInterface" value="com.zha.repository.IuserRepository"/>
+  	</bean>
+  	<bean id="cityRepository" class="org.mybatis.spring.mapper.MapperFactoryBean">
+     	<property name="sqlSessionFactory" ref="sqlSessionFactory" /> 
+     	<property name="mapperInterface" value="com.zha.repository.IcityRepository"/>
+  	</bean>
+  	<bean id="docLibRepository" class="org.mybatis.spring.mapper.MapperFactoryBean">
+     	<property name="sqlSessionFactory" ref="sqlSessionFactory" /> 
+     	<property name="mapperInterface" value="com.zha.repository.IdocLibRepository"/>
+  	</bean> -->
+  	
+  	
+  	<!-- 属性值注入 @value-->
+  	<!-- <bean class="com.zha.util.ExtendPropertyPlaceholderConfigurer">
+  		<property name="ignoreResourceNotFound" value="true"/>
+  		<property name="locations">
+  			<list>
+  				<value>classpath:jdbc.properties</value>
+  				<value>classpath:default.properties</value>
+  			</list>
+  		</property>
+  	</bean> -->
+  	
+  	<context:component-scan base-package="com.zd"/>
+	
+	<mvc:annotation-driven/>
+	
+  	<mvc:annotation-driven>
+  		<mvc:message-converters register-defaults="false">
+    		<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=utf-8</value>
+						<value>text/xml;charset=utf-8</value>
+						<value>text/plain;</value>
+						<value>application/json;charset=utf-8</value>
+					</list>
+				</property>
+			</bean>
+        	<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        		<property name="supportedMediaTypes">
+					<list>
+						<value>text/html;charset=utf-8</value>
+						<value>text/xml;charset=utf-8</value>
+						<value>text/plain;</value>
+						<value>application/json;charset=utf-8</value>
+					</list>
+				</property>
+        	</bean>
+    	</mvc:message-converters>
+  	</mvc:annotation-driven>
+ 	
+ 	<!-- <mvc:resources mapping="/scripts/**" location="/scripts/" />
+	<mvc:resources mapping="/style/**" location="/style/" />
+	<mvc:resources mapping="/imgs/**" location="/imgs/" /> -->
+ 	
+ 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+	</bean>
+	
+  	
+  	<!-- Spring中引入其他配置文件 -->
+    <!-- <import resource="classpath*:/spring/job-timer.xml" /> -->
+  	
+</beans>
